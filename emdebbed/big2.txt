@@ -1,0 +1,81 @@
+contributed articles 
+
+Doi:10.1145/1646353.1646374 
+
+How Coverity built a bug-finding tool, and 
+a business, around the unlimited supply 
+of bugs in software systems. 
+
+BY AL BesseY, Ken BLocK, Ben cheLf, AnDY chou, 
+BRYAn fuLton, seth hALLem, chARLes henRi-GRos, 
+AsYA KAmsKY, scott mcPeAK, AnD DAWson enGLeR 
+
+A few Billion 
+Lines of 
+code Later 
+
+using static Analysis 
+to find Bugs in 
+the Real World 
+
+In 2002, COVErITY commercialized3 a research static 
+bug-finding tool.6,9 Not surprisingly, as academics, 
+our view of commercial realities was not perfectly 
+accurate. However, the problems we encountered 
+were not the obvious ones. Discussions with tool 
+researchers and system builders suggest we were 
+not alone in our naïveté. Here, we document some 
+of the more important examples of what we learned 
+developing and commercializing an industrialstrength 
+bug-finding tool. 
+
+We built our tool to find generic errors (such as 
+memory corruption and data races) and systemspecific 
+or interface-specific violations (such as 
+violations of function-ordering constraints). The tool, 
+
+like all static bug finders, leveraged 
+the fact that programming rules often 
+map clearly to source code; thus static 
+inspection can find many of their violations. 
+For example, to check the rule 
+“acquired locks must be released,” a 
+checker would look for relevant operations 
+(such as lock() and unlock()) 
+and inspect the code path after flagging 
+rule disobedience (such as lock()with 
+no unlock() and double locking). 
+
+For those who keep track of such 
+things, checkers in the research system 
+typically traverse program paths (flow-
+sensitive) in a forward direction, going 
+across function calls (inter-procedural) 
+while keeping track of call-site-specific 
+information (context-sensitive) and 
+toward the end of the effort had some 
+of the support needed to detect when a 
+path was infeasible (path-sensitive). 
+
+A glance through the literature reveals 
+many ways to go about static bug 
+
+finding.1,2,4,7,8,11
+
+ For us, the central religion 
+was results: If it worked, it was 
+good, and if not, not. The ideal: check 
+millions of lines of code with little 
+manual setup and find the maximum 
+number of serious true errors with the 
+minimum number of false reports. As 
+much as possible, we avoided using annotations 
+or specifications to reduce 
+manual labor. 
+
+Like the PREfix product,2 we were 
+also unsound. Our product did not verify 
+the absence of errors but rather tried 
+to find as many of them as possible. Un-
+soundness let us focus on handling the 
+easiest cases fir

@@ -90,9 +90,12 @@ ofstream open_file_write(string filename)
 
 template <typename TFunc> void RunAndMeasure(TFunc func)
 {
+	// To use : RunAndMeasure([&]() {Code to insert });
 	const auto start = chrono::steady_clock::now();
 	func();
 	const auto end = chrono::steady_clock::now();
 	cout << chrono::duration <double, milli>(end - start).count() << " ms\n";
 }
 #endif
+
+
